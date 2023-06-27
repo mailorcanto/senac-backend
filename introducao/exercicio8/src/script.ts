@@ -13,20 +13,17 @@ console.log(newSentence);
 Criar uma função que recebe o primeiro nome e o sobrenome, o sobrenome pode ser nulo, mas se vier,
 exibir nome completo
 */
+let firstName:string = 'João';
+let surname: string | null = null;
 
-let nome:string = 'João';
-let sobrenome: null = null;
-
-function fullName(primeiro:string, segundo:string | null){
-    let primeiroNome:string = primeiro;
-    let segundoNome = segundo;
-    let frase:string;
-    if (segundoNome !== null){
-        frase = `Nome: ${primeiroNome} ${segundoNome}`;
+function fullName(first:string, last:string | null):string{
+    let phrase:string;
+    if (last !== null){
+        phrase = `Nome: ${first} ${last}`;
     }else{
-        frase = `Nome: ${primeiroNome}`
+        phrase = `Nome: ${first}`
     }
-    return frase;
+    return phrase;
 }
 
-console.log(fullName(nome,sobrenome));
+console.log(fullName(firstName,surname));
