@@ -19,11 +19,11 @@ let surname: string | null = null;
 function fullName(first:string, last:string | null):string{
     let phrase:string;
     if (last !== null){
-        phrase = `Nome: ${first} ${last}`;
+        return phrase = `Nome: ${first} ${last}`;
     }else{
-        phrase = `Nome: ${first}`
+        return phrase = `Nome: ${first}`
     }
-    return phrase;
 }
 
 console.log(fullName(firstName,surname));
+    return phrase;
