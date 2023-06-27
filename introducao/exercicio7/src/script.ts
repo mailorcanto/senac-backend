@@ -26,3 +26,22 @@ function dnaToRna (sequence:string):string{
 }
 let sequenceRna:string = dnaToRna(sequenceDna); 
 console.log(sequenceRna);
+
+/*
+exercício do professor
+função que recebe string com nome e outra string com data
+formato data: ("26/06/2023");
+retornar string no formato:
+`Olá me chamo ${nome}, nasci no dia ${dia} do mês ${} do ano de ${ano};
+*/
+
+let nome:string = `João da Silva`;
+let nasc:string = `20/12/2000`;
+
+function apresentacao (nome:string, data:string):string{
+    let name:string = nome;
+    let dividirData  = data.split('/');
+    let frase:string = `Olá, me chamo ${name}, nasci no dia ${dividirData[0]}, do mês ${dividirData[1]}, do ano ${dividirData[2]}`
+    return frase;
+}
+console.log(apresentacao(nome,nasc));
