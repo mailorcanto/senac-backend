@@ -26,4 +26,3 @@ function fullName(first:string, last:string | null):string{
 }
 
 console.log(fullName(firstName,surname));
-    return phrase;
