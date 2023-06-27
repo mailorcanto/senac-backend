@@ -26,3 +26,10 @@ function fullName(first:string, last:string | null):string{
 }
 
 console.log(fullName(firstName,surname));
+
+//solução professor
+function fullName2(firstName: string, lastName?: string ): void {
+    console.log(firstName, lastName || '');
+}
+
+fullName2('Ronaldinho');
