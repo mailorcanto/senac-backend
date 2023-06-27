@@ -15,13 +15,18 @@ exibir nome completo
 */
 
 let nome:string = 'João';
-let sobrenome:null;
+let sobrenome: null = null;
 
-function fullName(primeiro:string, segundo:string | null):string{
+function fullName(primeiro:string, segundo:string | null){
     let primeiroNome:string = primeiro;
-    let segundoNome:string | null = segundo;
-    let frase: string = `Nome: ${primeiroNome} ${segundoNome}`
+    let segundoNome = segundo;
+    let frase:string;
+    if (segundoNome !== null){
+        frase = `Nome: ${primeiroNome} ${segundoNome}`;
+    }else{
+        frase = `Nome: ${primeiroNome}`
+    }
     return frase;
 }
 
-console.log(fullName(nome,null));
+console.log(fullName(nome,sobrenome));
