@@ -21,6 +21,13 @@ enum setores {
 	VEN = "vendas",
 }
 
+type funcionarios = {
+	nome: string,
+	salario: number,
+	setor: string,
+	presencial: boolean
+} 
+
 let arrayFuncionarios: {nome: string, salario: number, setor:string, presencial:boolean }[] = [
 	{ nome: "Marcos", salario: 2500, setor: "marketing", presencial: true },
 	{ nome: "Maria" ,salario: 1500, setor: "vendas", presencial: false},
