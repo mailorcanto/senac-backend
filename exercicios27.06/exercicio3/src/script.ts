@@ -16,12 +16,26 @@ Considerando todas estas informações, crie uma função que receba todas essas
 parâmetros( 3 essenciais + 1 opcional) e retorne todas informações organizadas em um `type`
 */
 
-function receberFilme (nomeFilme:string, anoFilme:number,generoFilme:string,notaFilme?:string):any {
-    let filme: string = "nome: "+nomeFilme+" ano: "+anoFilme+" gênero:"+generoFilme+" nota:"+notaFilme || ''+'.';
-    return filme;
+function receberFilme (nomeFilme:string, anoFilme:number,generoFilme:string,notaFilme?:number):any {
+if (notaFilme !== undefined){
+	let filme = {
+		nome: nomeFilme,
+		ano: anoFilme,
+		genero: generoFilme,
+		nota: notaFilme
+	}
+	return filme;
+}
+else{
+	let filme = {
+		nome: nomeFilme,
+		ano: anoFilme,
+		genero: generoFilme
+	}
+	return filme;
 }
 
-
+}
 enum GENERO {
 	ACAO="ação",
 	DRAMA="drama",
@@ -29,7 +43,5 @@ enum GENERO {
 	ROMANCE="romance",
 	TERROR="terror"
 }
-
-
 
 console.log(receberFilme('The Batman', 2022, GENERO.ACAO));
