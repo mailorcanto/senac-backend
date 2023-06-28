@@ -21,7 +21,7 @@ Aproveitando a função já feita, faça uma nova função que receba o array de
 preços e retorne a lista de estoque ordenada pela quantidade de cada produto. 
 
 */
-const ajustaPreco = (preco :number): string => {
+function ajustaPreco (preco :number): string {
 	const valorAjustado: string = preco.toFixed(2).replace('.', ',');
 	return "R$ "+valorAjustado
 }
