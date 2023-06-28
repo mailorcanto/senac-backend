@@ -45,3 +45,38 @@ enum GENERO {
 }
 
 console.log(receberFilme('The Batman', 2022, GENERO.ACAO));
+
+//resolução do professor: OPERADOR TERNÁRIO
+
+type film = {
+	name: string,
+	year: number,
+	genre: string,
+	rating: number
+}
+
+enum GENERO {
+	ACAO="ação",
+	DRAMA="drama",
+	COMEDIA="comédia",
+	ROMANCE="romance",
+	TERROR="terror"
+}
+
+function getMovie(name: string, year: number, genre: string, rating?: number):string{
+	let film1: film={
+		name: name,
+		year: year,
+		genre: genre,
+		rating: rating ? rating : 0
+	}
+
+	let hasRating = rating ? `| rating: ${film1.rating}` : '';
+
+	return `nome ${film1.name} | ano ${film1.year} | gênero ${film1.genre} ${hasRating}`;
+
+}
+
+console.log(getMovie('Game of Thrones',2010,GENERO.DRAMA,6.5));
+
+
