@@ -14,7 +14,6 @@ Considerando o arrayacima, crie um ENUM para os setores e um type para as pessoa
 Em seguida, crie uma função que receba este array como parâmetro e retorne apenas as pessoas do setor de
 marketing que trabalham presencialmente. 
 */
-
 enum setores {
 	MAR = "marketing",
 	FIN = "financeiro",
@@ -38,6 +37,7 @@ let arrayFuncionarios: funcionarios [] = [
 	{ nome: "Paola" ,salario: 3500, setor: setores.MAR, presencial: true }
 ]
 
+/*
 function filtrarArray (array:funcionarios[]):any{
 	let arrayMarketing:any[] = [];
 	for (let i = 0; i < array.length; i++){
@@ -49,7 +49,13 @@ function filtrarArray (array:funcionarios[]):any{
 }
 
 console.log(filtrarArray(arrayFuncionarios));
+*/
 
+function arrayFiltrado (array:funcionarios[]):void{
+	console.log(array.filter(mkt => mkt.setor == setores.MAR && mkt.presencial==true));
+}
+
+arrayFiltrado(arrayFuncionarios);
 
 	
 	
