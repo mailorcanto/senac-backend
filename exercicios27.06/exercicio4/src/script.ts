@@ -29,19 +29,19 @@ type funcionarios = {
 } 
 
 let arrayFuncionarios: funcionarios [] = [
-	{ nome: "Marcos", salario: 2500, setor: "marketing", presencial: true },
-	{ nome: "Maria" ,salario: 1500, setor: "vendas", presencial: false},
-	{ nome: "Salete" ,salario: 2200, setor: "financeiro", presencial: true},
-	{ nome: "João" ,salario: 2800, setor: "marketing", presencial: false},
-	{ nome: "Josué" ,salario: 5500, setor: "financeiro", presencial: true},
-	{ nome: "Natalia" ,salario: 4700, setor: "vendas", presencial: true},
-	{ nome: "Paola" ,salario: 3500, setor: "marketing", presencial: true }
+	{ nome: "Marcos", salario: 2500, setor: setores.MAR, presencial: true },
+	{ nome: "Maria" ,salario: 1500, setor: setores.VEN, presencial: false},
+	{ nome: "Salete" ,salario: 2200, setor: setores.FIN, presencial: true},
+	{ nome: "João" ,salario: 2800, setor: setores.MAR, presencial: false},
+	{ nome: "Josué" ,salario: 5500, setor: setores.FIN, presencial: true},
+	{ nome: "Natalia" ,salario: 4700, setor: setores.VEN, presencial: true},
+	{ nome: "Paola" ,salario: 3500, setor: setores.MAR, presencial: true }
 ]
 
-function filtrarArray (array:any[]):any{
+function filtrarArray (array:funcionarios[]):any{
 	let arrayMarketing:any[] = [];
 	for (let i = 0; i < array.length; i++){
-		if (array[i].setor == setores.MAR) {
+		if (array[i].setor == setores.MAR && array[i].presencial === true) {
 			arrayMarketing.push(array[i]);
 		}
 	}
@@ -49,7 +49,6 @@ function filtrarArray (array:any[]):any{
 }
 
 console.log(filtrarArray(arrayFuncionarios));
-
 
 
 	
