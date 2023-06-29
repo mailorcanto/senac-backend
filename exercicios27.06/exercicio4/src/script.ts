@@ -28,7 +28,7 @@ type funcionarios = {
 	presencial: boolean
 } 
 
-let arrayFuncionarios: {nome: string, salario: number, setor:string, presencial:boolean }[] = [
+let arrayFuncionarios: funcionarios [] = [
 	{ nome: "Marcos", salario: 2500, setor: "marketing", presencial: true },
 	{ nome: "Maria" ,salario: 1500, setor: "vendas", presencial: false},
 	{ nome: "Salete" ,salario: 2200, setor: "financeiro", presencial: true},
