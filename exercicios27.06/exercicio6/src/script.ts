@@ -21,9 +21,10 @@ const arrayClientes: clientes []=[
 ]
 function retornarClientes (array: clientes[]):any{
 	for (let i = 0; i <array.length;i++){
-		let arraysomarDebitos: any;
-		arraysomarDebitos = (array[i].debitos);
-		array[i].debitos = somarDebitos(arraysomarDebitos); //puxando o retorno da função somarDebitos e enviando para o array original
+		let arraysomarDebitos: any; //criando array provisório para receber apenas a propriedade debitos
+		arraysomarDebitos = (array[i].debitos); //recebendo apenas a propriedade debitos do array na posição [i]
+		array[i].debitos = somarDebitos(arraysomarDebitos); //executando a função somarDebitos (na posição [i]) e enviando o retorno da função 
+		//para o array original
 	}
 	function somarDebitos (array:number[]):any{
 		let resultado = array.reduce((acumulador, valorAtual) => acumulador + valorAtual);
