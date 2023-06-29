@@ -6,43 +6,40 @@ cliente.
 Pensando em aumentar seu lucros, o banco quer identificar possíveis clientes precisando de empréstimos. Dessa forma, a sua tarefa é criar uma 
 função que receba este array como parâmetro, atualize o saldo total descontando todos os débitos e retorne apenas os clientes com saldo negativo.
 */
-function ajustaPreco (preco :number): string {
-	const valorAjustado: string = preco.toFixed(2).replace('.', ',');
-	return "R$ "+valorAjustado;
+type clientes = {
+	cliente: string,
+	saldoTotal: number,
+	debitos: number[];
 }
-
-type Estoques = {
-	nome: string;
-	quantidade: number;
-	valorUnitario: number | string;
-};
-
-let arrayEstoques: Estoques[] = [
-	{ nome: "MacMugffin", quantidade: 37, valorUnitario: 51.04 },
-	{ nome: "Vassoura voadora", quantidade: 56, valorUnitario: 210.0 },
-	{ nome: "Laço da verdade", quantidade: 32, valorUnitario: 571.5 },
-	{ nome: "O precioso", quantidade: 1, valorUnitario: 9181.923 },
-	{ nome: "Caneta de 250 cores", quantidade: 123, valorUnitario: 17 },
-	{ nome: "Plumbus", quantidade: 13, valorUnitario: 140.44 },
-	{ nome: "Pokebola", quantidade: 200, valorUnitario: 99.9915 }
-];
-
-function retornarEstoques (array:any[]):any{
-	let arrayOrdenado: Estoques[] = []; //criando array para receber informações do array original e ser reordenado conforme estoque
-	for (let i = 0; i < array.length; i ++){
-		let valUnit: string = (ajustaPreco(array[i].valorUnitario as number)); //criando variável valorUnit, executando função ajustaPreco no 
-		//loop atual e atribuindo o retorno desta função para a variável criada
-		array[i].valorUnitario = valUnit; //igualando a propriedade valorUnitario do array recebido como parâmetro à variável valorUnit 
-		//(ex: R$ 51,04)
-		arrayOrdenado.push(array[i]);//enviando o loop atual do array/parâmetro para a variável arrayOrdenado
+const arrayClientes: clientes []=[
+	{ cliente: "João", saldoTotal: 1000, debitos: [100, 200, 300] },
+	{ cliente: "Paula", saldoTotal: 7500, debitos: [200, 1040] },
+	{ cliente: "Pedro", saldoTotal: 10000, debitos: [5140, 6100, 100, 2000] },
+	{ cliente: "Luciano", saldoTotal: 100, debitos: [100, 200, 1700] },
+	{ cliente: "Artur", saldoTotal: 1800, debitos: [200, 300] },
+	{ cliente: "Soter", saldoTotal: 1200, debitos: [0] }
+]
+function retornarClientes (array: clientes[]):any{
+	for (let i = 0; i <array.length;i++){
+		let arraysomarDebitos: any; //criando variável provisória para receber apenas a propriedade debitos
+		arraysomarDebitos = (array[i].debitos); //recebendo apenas a propriedade debitos do array na posição [i]
+		array[i].debitos = somarDebitos(arraysomarDebitos); //executando a função somarDebitos (na posição [i]) e enviando o retorno da função 
+		//para o array original
 	}
-	arrayOrdenado.sort(function(a, b):any { //recebendo array na função para reordenar conforme quantidade de estoque
-		if (a.quantidade > b.quantidade) {
-		  return -1;
-		} else {
-		  return true;
-		}
-	  })
-	return arrayOrdenado; //retornando array pronto	  
+	function somarDebitos (array:number[]):any{
+		let resultado = array.reduce((acumulador, valorAtual) => acumulador + valorAtual);
+		return resultado;
+	}
 }
-console.log(retornarEstoques(arrayEstoques));
+function subtrairDebitos (array: any[]):any{
+	let arrayDevedores:any []=[];
+	for (let i = 0; i <array.length;i++){
+		if (array[i].saldoTotal - array[i].debitos < 0){
+			array[i].saldoTotal = array[i].saldoTotal - array[i].debitos;
+			arrayDevedores.push(array[i])
+		}
+	}
+	return arrayDevedores;
+}
+retornarClientes(arrayClientes);
+console.log(subtrairDebitos(arrayClientes));
