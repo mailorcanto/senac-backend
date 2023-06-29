@@ -6,38 +6,39 @@ cliente.
 Pensando em aumentar seu lucros, o banco quer identificar possíveis clientes precisando de empréstimos. Dessa forma, a sua tarefa é criar uma 
 função que receba este array como parâmetro, atualize o saldo total descontando todos os débitos e retorne apenas os clientes com saldo negativo.
 */
-
-const arrayClientes: {cliente: string, saldoTotal: number, debitos:number []}[]=[
+type clientes = {
+	cliente: string,
+	saldoTotal: number,
+	debitos: number[];
+}
+const arrayClientes: clientes []=[
 	{ cliente: "João", saldoTotal: 1000, debitos: [100, 200, 300] },
 	{ cliente: "Paula", saldoTotal: 7500, debitos: [200, 1040] },
 	{ cliente: "Pedro", saldoTotal: 10000, debitos: [5140, 6100, 100, 2000] },
 	{ cliente: "Luciano", saldoTotal: 100, debitos: [100, 200, 1700] },
 	{ cliente: "Artur", saldoTotal: 1800, debitos: [200, 300] },
-	{ cliente: "Soter", saldoTotal: 1200, debitos: [] }
+	{ cliente: "Soter", saldoTotal: 1200, debitos: [0] }
 ]
-
-const sum: number = arrayClientes.reduce((accumulator:any, object: {debitos: number[]}) => {
-	for(let i= 0; i < arrayClientes.length; i++){
-		return accumulator += object.debitos[i];
+function retornarClientes (array: clientes[]):any{
+	for (let i = 0; i <array.length;i++){
+		let arraysomarDebitos: any;
+		arraysomarDebitos = (array[i].debitos);
+		array[i].debitos = somarDebitos(arraysomarDebitos); //puxando o retorno da função somarDebitos e enviando para o array original
 	}
-  }, 0);
-console.log(sum);
-
-function calcularSaldo (array:any[]):any{
-	let clientesDebito:any[] = [];
-	let sum: number = 0;
-	for (let i = 0;i < array.length; i++){
-		sum += array[i].debitos;
-		let saldoAtualizado: number = array[i].saldoTotal - array[i].debitos;
-		if (saldoAtualizado < 0){
-			clientesDebito.push(array[i]);
-		}
-	}
-	if (clientesDebito !== null){
-		return clientesDebito;
-	}else{
-		return console.log('Não há clientes em débito');
+	function somarDebitos (array:number[]):any{
+		let resultado = array.reduce((acumulador, valorAtual) => acumulador + valorAtual);
+		return resultado;
 	}
 }
-
-console.log(calcularSaldo(arrayClientes));
+function subtrairDebitos (array: any[]):any{
+	let arrayDevedores:any []=[];
+	for (let i = 0; i <array.length;i++){
+		if (array[i].saldoTotal - array[i].debitos < 0){
+			array[i].saldoTotal = array[i].saldoTotal - array[i].debitos;
+			arrayDevedores.push(array[i])
+		}
+	}
+	return arrayDevedores;
+}
+retornarClientes(arrayClientes);
+console.log(subtrairDebitos(arrayClientes));
