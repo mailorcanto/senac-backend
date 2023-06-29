@@ -23,7 +23,7 @@ preços e retorne a lista de estoque ordenada pela quantidade de cada produto.
 */
 function ajustaPreco (preco :number): string {
 	const valorAjustado: string = preco.toFixed(2).replace('.', ',');
-	return "R$ "+valorAjustado
+	return "R$ "+valorAjustado;
 }
 
 type Estoques = {
@@ -43,20 +43,22 @@ let arrayEstoques: Estoques[] = [
 ];
 
 function retornarEstoques (array:any[]):any{
-	let arrayOrdenado: Estoques[] = [];
+	let arrayOrdenado: Estoques[] = []; //criando array para receber informações do array original e ser reordenado conforme estoque
 	for (let i = 0; i < array.length; i ++){
-		let valUnit: string = (ajustaPreco(array[i].valorUnitario as number));
-		array[i].valorUnitario = valUnit;
-		arrayOrdenado.push(array[i]);
+		let valUnit: string = (ajustaPreco(array[i].valorUnitario as number)); //criando variável valorUnit, executando função ajustaPreco no 
+		//loop atual e atribuindo o retorno desta função para a variável criada
+		array[i].valorUnitario = valUnit; //igualando a propriedade valorUnitario do array recebido como parâmetro à variável valorUnit 
+		//(ex: R$ 51,04)
+		arrayOrdenado.push(array[i]);//enviando o loop atual do array/parâmetro para a variável arrayOrdenado
 	}
-	arrayOrdenado.sort(function(a, b):any {
+	arrayOrdenado.sort(function(a, b):any { //recebendo array na função para reordenar conforme quantidade de estoque
 		if (a.quantidade > b.quantidade) {
 		  return -1;
 		} else {
 		  return true;
 		}
-	  });
-	return arrayOrdenado;	  
+	  })
+	return arrayOrdenado; //retornando array pronto	  
 }
 
 console.log(retornarEstoques(arrayEstoques));
