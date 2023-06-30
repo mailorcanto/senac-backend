@@ -13,20 +13,28 @@ Dica 2: Para fazer as operações necessárias, você pode converter as datas pa
 function renewId ():any{
 	let data: Date = new Date ();
 
-	let dataNasc: string | null |undefined = prompt('Informe sua data de nascimento');
-	let nasc: any[] = dataNasc.split('/');
+	const dataNasc: string | null = prompt('Digite a sua data de nascimento (dd/mm/aaaa):');
+	let nasc: string[] = [];
+	if (dataNasc) {
+    	nasc = dataNasc.split("/");
+	}
 	let nascReordenada = new Date (`${nasc[2]},${nasc[1]},${nasc[0]}`);
 	var idadeMilisegundos = Math.abs(data.getTime() - nascReordenada.getTime()); //converte as duas datas para milisegundos e retorna a diferença entre elas
 	var idadeDias = Math.ceil(idadeMilisegundos / (1000 * 3600 * 24));  //transformando em segundos, dividindo pelos segundos de uma hora (3600)
 	//e multiplicando por 24h para transformar milisegundos em dias
+	console.log(idadeDias);
 
-	let dataRenov:string = `10/10/2010`;
-	let renov: any[] = dataRenov.split('/');
+	const dataRenov: string | null = prompt('Digite a data de renovação de sua carteira (dd/mm/aaaa):');
+	let renov: string[] = [];
+	if (dataRenov) {
+    	renov = dataRenov.split("/");
+	}
 	let renovReordenada = new Date (`${renov[2]},${renov[1]},${renov[0]}`);
 	var renovMilisegundos = Math.abs(data.getTime() - renovReordenada.getTime());
 	var renovDias = Math.ceil(renovMilisegundos / (1000 * 3600 * 24))
-
-	if (idadeDias / 365 <= 20){ if(renovDias / 365 >= 5){
+	console.log(renovDias);
+	if (idadeDias / 365 <= 20){ 
+		if(renovDias / 365 >= 5){
 			return console.log('renovar?',true);
 		}
 		else {
