@@ -6,6 +6,8 @@ cliente.
 Pensando em aumentar seu lucros, o banco quer identificar possíveis clientes precisando de empréstimos. Dessa forma, a sua tarefa é criar uma 
 função que receba este array como parâmetro, atualize o saldo total descontando todos os débitos e retorne apenas os clientes com saldo negativo.
 */
+
+/*
 type clientes = {
 	cliente: string,
 	saldoTotal: number,
@@ -43,3 +45,35 @@ function subtrairDebitos (array: any[]):any{
 }
 retornarClientes(arrayClientes);
 console.log(subtrairDebitos(arrayClientes));
+*/
+
+
+//solução do professor
+
+
+type clientes = {
+	cliente: string,
+	saldoTotal: number,
+	debitos: number[]
+}
+
+const arrayClientes: clientes []=[
+	{ cliente: "João", saldoTotal: 1000, debitos: [100, 200, 300] },
+	{ cliente: "Paula", saldoTotal: 7500, debitos: [200, 1040] },
+	{ cliente: "Pedro", saldoTotal: 10000, debitos: [5140, 6100, 100, 2000] },
+	{ cliente: "Luciano", saldoTotal: 100, debitos: [100, 200, 1700] },
+	{ cliente: "Artur", saldoTotal: 1800, debitos: [200, 300] },
+	{ cliente: "Soter", saldoTotal: 1200, debitos: [] }];
+
+function getNegativeAmount (users: clientes[]):clientes[]{
+
+	let negativado = users.map(user => {
+		const sumDebts = user.debitos.reduce((acumulador: number, valor:number)=> valor ? 
+		acumulador += valor : 0,0); //acumulador = acumulador + valor
+		user.saldoTotal -= sumDebts; //mesmo que user.saldoTOtal = user.saldoTotal - sumDebts
+		user.debitos = [];//zerando débitos de usuários após cálculos de saldo
+	});
+	return negativado.filter(cliente =>{
+		return cliente.saldoTotal < 0; 
+	})
+}
