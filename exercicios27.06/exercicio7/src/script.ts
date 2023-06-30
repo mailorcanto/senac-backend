@@ -6,7 +6,6 @@ const ajustaPreco = (preco :number): string => {
 	const valorAjustado: string = preco.toFixed(2).replace('.', ',')
 	return "R$ "+valorAjustado
 }
-
 [
 	{ nome: "MacMugffin", quantidade: 37, valorUnitario: 51.040},
 	{ nome: "Vassoura voadora", quantidade: 56, valorUnitario: 210.0},
@@ -16,11 +15,11 @@ const ajustaPreco = (preco :number): string => {
 	{ nome: "Plumbus", quantidade: 13, valorUnitario: 140.44},
 	{ nome: "Pokebola", quantidade: 200, valorUnitario: 99.9915}
 ]
-
 Aproveitando a função já feita, faça uma nova função que receba o array de estoque como parâmetro, use a função ajustaPreco para corrigir os 
 preços e retorne a lista de estoque ordenada pela quantidade de cada produto. 
-
 */
+
+/*
 function ajustaPreco (preco :number): string {
 	const valorAjustado: string = preco.toFixed(2).replace('.', ',');
 	return "R$ "+valorAjustado;
@@ -62,3 +61,36 @@ function retornarEstoques (array:any[]):any{
 }
 
 console.log(retornarEstoques(arrayEstoques));
+*/
+
+//solução alternativa
+
+type produtos = {
+	nome: string,
+	quantidade: number,
+	valorUnitario: number | string
+}
+
+let products: produtos[] = [
+	{ nome: "MacMugffin", quantidade: 37, valorUnitario: 51.040},
+	{ nome: "Vassoura voadora", quantidade: 56, valorUnitario: 210.0},
+	{ nome: "Laço da verdade", quantidade: 32, valorUnitario: 571.5},
+	{ nome: "O precioso", quantidade: 1, valorUnitario: 9181.923},
+	{ nome: "Caneta de 250 cores", quantidade: 123, valorUnitario: 17},
+	{ nome: "Plumbus", quantidade: 13, valorUnitario: 140.44},
+	{ nome: "Pokebola", quantidade: 200, valorUnitario: 99.9915}
+]
+
+const ajustaPreco = (preco :number): string => {
+	const valorAjustado: string = preco.toFixed(2).replace('.', ',');
+	
+	return "R$ "+valorAjustado
+}
+
+function organizaArray (array:produtos[]):produtos[] { 
+	for (let i = 0; i < array.length; i ++){
+		array[i].valorUnitario = ajustaPreco(products[i].valorUnitario as number);
+	}
+	return array.sort((a,b) => b.quantidade - a.quantidade); }
+
+console.log(organizaArray(products));
