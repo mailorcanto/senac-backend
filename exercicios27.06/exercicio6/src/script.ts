@@ -50,7 +50,6 @@ console.log(subtrairDebitos(arrayClientes));
 
 //solução do professor
 
-
 type clientes = {
 	cliente: string,
 	saldoTotal: number,
