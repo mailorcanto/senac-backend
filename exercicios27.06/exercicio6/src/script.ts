@@ -38,6 +38,7 @@ function subtrairDebitos (array: any[]):any{
 	for (let i = 0; i <array.length;i++){
 		if (array[i].saldoTotal - array[i].debitos < 0){
 			array[i].saldoTotal = array[i].saldoTotal - array[i].debitos;
+			array[i].debitos = [];
 			arrayDevedores.push(array[i])
 		}
 	}
@@ -47,32 +48,38 @@ retornarClientes(arrayClientes);
 console.log(subtrairDebitos(arrayClientes));
 */
 
+//SOLUÇÃO DO PROFESSOR
+let users = [
+    {cliente: "Felipe", saldoTotal: 1000, debitos: [100, 200, 300]},
+    {cliente: "Paula", saldoTotal: 7500, debitos: [1040, 200]},
+    {cliente: "Pedro", saldoTotal: 10000, debitos: [5140, 6100, 100, 2000]},
+    {cliente: "Luciano", saldoTotal: 100, debitos: [100, 200, 1700]},
+    {cliente: "Renato", saldoTotal: 1800, debitos: [200, 300]},
+    {cliente: "Soter", saldoTotal: 1200, debitos: []},    
+];
 
-//solução do professor
-
-type clientes = {
-	cliente: string,
-	saldoTotal: number,
-	debitos: number[]
+type clients = {
+    cliente: string,
+    saldoTotal: number,
+    debitos: number[],
 }
 
-const arrayClientes: clientes []=[
-	{ cliente: "João", saldoTotal: 1000, debitos: [100, 200, 300] },
-	{ cliente: "Paula", saldoTotal: 7500, debitos: [200, 1040] },
-	{ cliente: "Pedro", saldoTotal: 10000, debitos: [5140, 6100, 100, 2000] },
-	{ cliente: "Luciano", saldoTotal: 100, debitos: [100, 200, 1700] },
-	{ cliente: "Artur", saldoTotal: 1800, debitos: [200, 300] },
-	{ cliente: "Soter", saldoTotal: 1200, debitos: [] }];
+function getNegativeAmount(users: clients[]): clients[] {
+    calculateDebts();
 
-function getNegativeAmount (users: clientes[]):clientes[]{
-
-	let negativado = users.map(user => {
-		const sumDebts = user.debitos.reduce((acumulador: number, valor:number)=> valor ? 
-		acumulador += valor : 0,0); //acumulador = acumulador + valor
-		user.saldoTotal -= sumDebts; //mesmo que user.saldoTOtal = user.saldoTotal - sumDebts
-		user.debitos = [];//zerando débitos de usuários após cálculos de saldo
-	});
-	return negativado.filter(cliente =>{
-		return cliente.saldoTotal < 0; 
-	})
+    return users.filter(clients => {                
+        return clients.saldoTotal < 0;
+    });    
 }
+
+function calculateDebts() {
+    return users.map(user => {        
+        const sumDebts = user.debitos.reduce((acumulator: number, value: number) => 
+            value ? acumulator += value : 0
+        , 0);
+        user.saldoTotal = user.saldoTotal - sumDebts;
+        user.debitos = [];
+    });
+}
+
+console.log(getNegativeAmount(users));
