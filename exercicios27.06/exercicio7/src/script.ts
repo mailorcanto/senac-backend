@@ -3,7 +3,7 @@ Você acabou de conseguir um emprego em uma importadora e precisa continuar a de
 desenvolvedora anterior a você chegou a criar uma função que ajusta os preços para o formato brasileiro, mas não chegou a implementa-la:
 
 const ajustaPreco = (preco :number): string => {
-	const valorAjustado: string = preco.toFixed(2).replace('.', ',')
+	const valorAjustado: string = preco.toFixed(2).replace('.', ',') //arredondando para 2 casas decimais
 	return "R$ "+valorAjustado
 }
 [
