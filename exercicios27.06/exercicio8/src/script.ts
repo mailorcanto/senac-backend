@@ -15,14 +15,14 @@ function renewId ():void{
 	let dataNasc: string = '10/10/2010';
 	let nasc = dataNasc.split("/");
 	let nascReordenada = new Date (`${nasc[2]},${nasc[1]},${nasc[0]}`);
-	var idadeMilisegundos = Math.abs(data.getTime() - nascReordenada.getTime()); //converte as duas datas para milisegundos e retorna a diferença entre elas
+	var idadeMilisegundos = data.getTime() - nascReordenada.getTime(); //converte as duas datas para milisegundos e retorna a diferença entre elas
 	var idadeDias = Math.ceil(idadeMilisegundos / (1000 * 3600 * 24));  //transformando em segundos, dividindo pelos segundos de uma hora (3600)
 	//e multiplicando por 24h para transformar milisegundos em dias
 
 	let dataRenov: string = '10/10/2018';
 	let renov = dataRenov.split("/");
 	let renovReordenada = new Date (`${renov[2]},${renov[1]},${renov[0]}`);
-	var renovMilisegundos = Math.abs(data.getTime() - renovReordenada.getTime());
+	var renovMilisegundos = data.getTime() - renovReordenada.getTime();
 	var renovDias = Math.ceil(renovMilisegundos / (1000 * 3600 * 24))
 	if (idadeDias / 365 <= 20){ 
 		if(renovDias / 365 >= 5){
