@@ -15,9 +15,9 @@ function receberData(data:string):number{
 	let dataArray = dataInserida.split("/");
 	let dataReordenada = new Date (`${dataArray[2]},${dataArray[1]},${dataArray[0]}`);
 	var diferencaMilissegundos = dataAtual.getTime() - dataReordenada.getTime(); //converte as duas datas para milissegundos e retorna a diferença entre elas
-	var diferencaDias = Math.ceil(diferencaMilissegundos / (1000 * 3600 * 24));//transformando em segundos, dividindo pelos segundos de uma hora (3600)
+	var tempoDias = Math.ceil(diferencaMilissegundos / (1000 * 3600 * 24));//transformando em segundos, dividindo pelos segundos de uma hora (3600)
 	//e multiplicando por 24h para transformar milissegundos em dias
-	return diferencaDias;
+	return tempoDias;
 }
 function renewId ():void{
 	let idadeDias:number = receberData('10/10/1970');
