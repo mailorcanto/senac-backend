@@ -12,7 +12,7 @@ Dica 2: Para fazer as operações necessárias, você pode converter as datas pa
 function receberData(data:string):number{
 	let dataAtual: Date = new Date ();
 	let dataArray = data.split("/");
-	let dataReordenada = new Date (`${dataArray[2]},${dataArray[1]},${dataArray[0]}`);
+	let dataReordenada: Date = new Date (`${dataArray[2]},${dataArray[1]},${dataArray[0]}`);
 	var diferencaMilissegundos = dataAtual.getTime() - dataReordenada.getTime(); //converte as duas datas para milissegundos e retorna a diferença entre elas
 	var tempoDias = Math.ceil(diferencaMilissegundos / (1000 * 3600 * 24));//transformando em segundos, dividindo pelos segundos de uma hora (3600)
 	//e multiplicando por 24h para transformar milissegundos em dias
