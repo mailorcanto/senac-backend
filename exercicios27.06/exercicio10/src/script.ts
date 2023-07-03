@@ -68,10 +68,10 @@ let arrayCPF: string[] = cpf.split(''); //transformando string em array de strin
 var arrayConvertido = arrayCPF.map(function(str){return parseInt(str);}) //map para converter todos os valores do array para number
 
 function somaArray(array:number[]):number{ //função para somar os valores dentro de um array
-    let soma1:number = array.reduce(function(a, b) { return a + b; }, 0);
-    let mod1:number = soma1 % 11; //resto divisão
-    mod1 = 11 - mod1;
-    return mod1;
+    let soma:number = array.reduce(function(a, b) { return a + b; }, 0);
+    let mod:number = soma % 11; //resto divisão
+    mod = 11 - mod;
+    return mod;
 }
 
 function validarCpf (array:number[]):void{
