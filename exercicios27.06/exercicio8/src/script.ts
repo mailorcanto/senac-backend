@@ -9,27 +9,25 @@ Escreva uma função que pergunta ao usuário a data de nascimento de uma pessoa
 Dica 1: Você precisará da data atual para fazer as operações, uma opção é utilizar new Date() para obter a data atual
 Dica 2: Para fazer as operações necessárias, você pode converter as datas para timestamp usando o método getTime() na data 
 */
-
-function renewId ():void{
-	let data: Date = new Date ();
-	let dataNasc: string = '03/10/1970';
-	let nasc = dataNasc.split("/");
-	let nascReordenada = new Date (`${nasc[2]},${nasc[1]},${nasc[0]}`);
-	var idadeMilisegundos = data.getTime() - nascReordenada.getTime(); //converte as duas datas para milisegundos e retorna a diferença entre elas
-	var idadeDias = Math.ceil(idadeMilisegundos / (1000 * 3600 * 24));  //transformando em segundos, dividindo pelos segundos de uma hora (3600)
+function receberData(data:string):number{
+	let dataAtual: Date = new Date ();
+	let dataInserida: string = data;
+	let dataArray = dataInserida.split("/");
+	let dataReordenada = new Date (`${dataArray[2]},${dataArray[1]},${dataArray[0]}`);
+	var diferencaMilisegundos = dataAtual.getTime() - dataReordenada.getTime(); //converte as duas datas para milisegundos e retorna a diferença entre elas
+	var diferencaDias = Math.ceil(diferencaMilisegundos / (1000 * 3600 * 24));//transformando em segundos, dividindo pelos segundos de uma hora (3600)
 	//e multiplicando por 24h para transformar milisegundos em dias
+	return diferencaDias;
+}
+function renewId ():void{
+	let idadeDias:number = receberData('10/10/1970');
+	let renovDias:number = receberData('10/10/2008');
 
-	let dataRenov: string = '03/10/2007';
-	let renov = dataRenov.split("/");
-	let renovReordenada = new Date (`${renov[2]},${renov[1]},${renov[0]}`);
-	var renovMilisegundos = data.getTime() - renovReordenada.getTime();
-	var renovDias = Math.ceil(renovMilisegundos / (1000 * 3600 * 24))
 	if (idadeDias / 365 <= 20 && renovDias / 365 >= 5){ 
 			return console.log('renovar?',true);
 	}
 	else if (idadeDias / 365 >= 21 && idadeDias / 365 <=50 && renovDias / 365 >= 10){
 			return console.log('renovar?',true);
-		
 	}
 	else if (idadeDias / 365 > 50 && renovDias / 365 >= 15){
 			return console.log('renovar?',true);
@@ -37,6 +35,5 @@ function renewId ():void{
 	else {
 			return console.log('renovar?',false);
 	}
-	
 }
 renewId();
