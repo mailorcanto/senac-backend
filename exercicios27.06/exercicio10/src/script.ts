@@ -63,8 +63,8 @@ Você deve criar uma função que receba o CPF no formato “xxx.xxx.xxx-xx” e
 retorne um True e caso seja inválido retorne False
 */
 
-let cpf: string = '01548031028'; //number não aceita 0 como primeiro valor
-let arrayCPF: string[] = cpf.split(''); //transformando string em array
+let cpf: string = '01548031038'; //number não aceita 0 como primeiro valor
+let arrayCPF: string[] = cpf.split(''); //transformando string em array de strings
 var arrayConvertido = arrayCPF.map(function(str){return parseInt(str);}) //map para converter todos os valores do array para number
 
 function somaArray(array:number[]):number{ //função para somar os valores dentro de um array
@@ -74,7 +74,7 @@ function somaArray(array:number[]):number{ //função para somar os valores dent
     return mod1;
 }
 
-function validarCpf (array:number[]):any{
+function validarCpf (array:number[]):void{
     let teste1:number[]=[10,9,8,7,6,5,4,3,2]; //array para primeira validacao;
     let teste2:number[]=[11,10,9,8,7,6,5,4,3,2]; //array para segunda validacao;
     let arrayValidacao1:number[]=[];
@@ -90,15 +90,14 @@ function validarCpf (array:number[]):any{
             arrayValidacao2.push(calculo2);
         }
         if (somaArray(arrayValidacao2) == array[10] || somaArray(arrayValidacao2) >=10 && array[10] == 0){
-            return true;
+            console.log('CPF válido?',true);
         }
         else {
-            return false;
+            console.log('CPF válido?',false);
         }
     }
     else {
-        return false;
+        console.log('CPF válido?',false);
     }
 }
-
-console.log(validarCpf(arrayConvertido));
+validarCpf(arrayConvertido);
