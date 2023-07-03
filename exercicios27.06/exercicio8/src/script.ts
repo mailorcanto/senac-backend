@@ -13,22 +13,23 @@ function receberData(data:string):number{
 	let dataAtual: Date = new Date ();
 	let dataArray = data.split("/");
 	let dataReordenada: Date = new Date (`${dataArray[2]},${dataArray[1]},${dataArray[0]}`);
-	var diferencaMilissegundos = dataAtual.getTime() - dataReordenada.getTime(); //converte as duas datas para milissegundos e retorna a diferença entre elas
-	var tempoDias = Math.ceil(diferencaMilissegundos / (1000 * 3600 * 24));//transformando em segundos, dividindo pelos segundos de uma hora (3600)
+	let diferencaMilissegundos = dataAtual.getTime() - dataReordenada.getTime(); //converte as duas datas para milissegundos e retorna a diferença entre elas
+	let tempoDias = Math.ceil(diferencaMilissegundos / (1000 * 3600 * 24));//transformando em segundos, dividindo pelos segundos de uma hora (3600)
 	//e multiplicando por 24h para transformar milissegundos em dias
-	return tempoDias;
+	let tempoAno = tempoDias / 365;
+	return tempoAno;
 }
 function renewId ():void{
-	let idadeDias:number = receberData('10/10/1970');
-	let renovDias:number = receberData('10/10/2008');
+	let idade:number = receberData('10/10/2010');
+	let renov:number = receberData('10/10/2017');
 
-	if (idadeDias / 365 <= 20 && renovDias / 365 >= 5){ 
+	if (idade <= 20 && renov >= 5){ 
 			return console.log('renovar?',true);
 	}
-	else if (idadeDias / 365 >= 21 && idadeDias / 365 <=50 && renovDias / 365 >= 10){
+	else if (idade >= 21 && idade <=50 && renov >= 10){
 			return console.log('renovar?',true);
 	}
-	else if (idadeDias / 365 > 50 && renovDias / 365 >= 15){
+	else if (idade > 50 && renov >= 15){
 			return console.log('renovar?',true);
 	}
 	else {
