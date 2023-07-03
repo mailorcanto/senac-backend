@@ -12,42 +12,31 @@ Dica 2: Para fazer as operações necessárias, você pode converter as datas pa
 
 function renewId ():void{
 	let data: Date = new Date ();
-	let dataNasc: string = '10/10/2010';
+	let dataNasc: string = '03/10/1970';
 	let nasc = dataNasc.split("/");
 	let nascReordenada = new Date (`${nasc[2]},${nasc[1]},${nasc[0]}`);
 	var idadeMilisegundos = data.getTime() - nascReordenada.getTime(); //converte as duas datas para milisegundos e retorna a diferença entre elas
 	var idadeDias = Math.ceil(idadeMilisegundos / (1000 * 3600 * 24));  //transformando em segundos, dividindo pelos segundos de uma hora (3600)
 	//e multiplicando por 24h para transformar milisegundos em dias
 
-	let dataRenov: string = '10/10/2018';
+	let dataRenov: string = '03/10/2007';
 	let renov = dataRenov.split("/");
 	let renovReordenada = new Date (`${renov[2]},${renov[1]},${renov[0]}`);
 	var renovMilisegundos = data.getTime() - renovReordenada.getTime();
 	var renovDias = Math.ceil(renovMilisegundos / (1000 * 3600 * 24))
-	if (idadeDias / 365 <= 20){ 
-		if(renovDias / 365 >= 5){
+	if (idadeDias / 365 <= 20 && renovDias / 365 >= 5){ 
 			return console.log('renovar?',true);
-		}
-		else {
-			return console.log('renovar?',false);
-		}
 	}
-	if (idadeDias / 365 >= 21 && idadeDias / 365 <=50){
-		if(renovDias / 365 >= 10){
+	else if (idadeDias / 365 >= 21 && idadeDias / 365 <=50 && renovDias / 365 >= 10){
 			return console.log('renovar?',true);
-		}
-		else {
-			return console.log('renovar?',false);
-		}
+		
 	}
-	if (idadeDias / 365 > 50){
-		if(renovDias / 365 >= 15){
+	else if (idadeDias / 365 > 50 && renovDias / 365 >= 15){
 			return console.log('renovar?',true);
-		}
-		else {
-			return console.log('renovar?',false);
-		}
 	}
+	else {
+			return console.log('renovar?',false);
+	}
+	
 }
-
 renewId();
