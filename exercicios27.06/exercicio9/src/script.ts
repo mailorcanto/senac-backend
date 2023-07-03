@@ -20,7 +20,7 @@ que ela possui.
 PERMUTAÇÕES / PERMUTATIONS
 */
 
-let palavra:string = "mesario";
+let palavra:string = "mesa";
 
 function contador(string:string){
 	let contadorAnagramas: number = string.length;
