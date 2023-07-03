@@ -14,8 +14,8 @@ function receberData(data:string):number{
 	let dataInserida: string = data;
 	let dataArray = dataInserida.split("/");
 	let dataReordenada = new Date (`${dataArray[2]},${dataArray[1]},${dataArray[0]}`);
-	var diferencaMilisegundos = dataAtual.getTime() - dataReordenada.getTime(); //converte as duas datas para milisegundos e retorna a diferença entre elas
-	var diferencaDias = Math.ceil(diferencaMilisegundos / (1000 * 3600 * 24));//transformando em segundos, dividindo pelos segundos de uma hora (3600)
+	var diferencaMilissegundos = dataAtual.getTime() - dataReordenada.getTime(); //converte as duas datas para milisegundos e retorna a diferença entre elas
+	var diferencaDias = Math.ceil(diferencaMilissegundos / (1000 * 3600 * 24));//transformando em segundos, dividindo pelos segundos de uma hora (3600)
 	//e multiplicando por 24h para transformar milisegundos em dias
 	return diferencaDias;
 }
