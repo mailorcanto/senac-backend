@@ -77,8 +77,8 @@ function somaArray(array:number[]):number{ //função para somar os valores dent
 function validarCpf (array:number[]):void{
     let teste1:number[]=[10,9,8,7,6,5,4,3,2]; //array para primeira validacao;
     let teste2:number[]=[11,10,9,8,7,6,5,4,3,2]; //array para segunda validacao;
-    let arrayValidacao1:number[]=[];
-    let arrayValidacao2:number[]=[];
+    let arrayValidacao1:number[]=[]; //inicializando array vazio para onde serão enviados os resultados das multiplicações do primeiro for
+    let arrayValidacao2:number[]=[]; //inicializando array vazio para onde serão enviados os resultados das multiplicações do segundo for
     for (let i=0; i<teste1.length; i++){
         let calculo1:number = array[i]*teste1[i]; //fazendo a multiplicação do array na posição i pelo teste na posição i e salvando em um array;
         arrayValidacao1.push(calculo1);  //enviando resultados das multiplicações do array anterior para o arrayValidacao1;
