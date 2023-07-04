@@ -20,7 +20,7 @@ que ela possui.
 PERMUTAÇÕES / PERMUTATIONS
 */
 
-let palavra:string = "mesa";
+let palavra:string = "abcdef";
 
 function contador(string:string){
 	let contadorAnagramas: number = string.length;
@@ -43,5 +43,31 @@ const permutacoesString = (string: string): string[] => { //recebe uma string e 
 		[]
 	  );
   };
-console.log(permutacoesString(palavra));
+//console.log(permutacoesString(palavra));
+
+//SOLUÇÕES DO PROFESSOR
+function factorial(word: string) {
+    let wordSize = word.length;    
+
+    if (wordSize === 0 || wordSize === 1) {
+        return 1;
+    }
+
+    //com laço while
+    let result = wordSize;
+    while(wordSize > 1) {
+        wordSize--;
+        result *= wordSize;
+    }
+    return result;
+
+    //com laço for
+    /*for (var i = wordSize - 1; i >= 1; i--) {
+        wordSize *= i;
+    }
+    return wordSize;
+    */
+}
+
+console.log(factorial('abcdef'));
 
