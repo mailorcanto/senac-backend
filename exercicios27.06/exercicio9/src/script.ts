@@ -19,18 +19,15 @@ que ela possui.
 
 PERMUTAÇÕES / PERMUTATIONS
 */
-
-let palavra:string = "abcdef";
-
-function contador(string:string){
-	let contadorAnagramas: number = string.length;
+function contador(palavra:string){
+	let contadorAnagramas: number = palavra.length;
 	let contador:number = 1;
 	for (let i =1; i <= contadorAnagramas;i++){
 		contador *=i;
 	}
 	return console.log(contador);
 }
-contador(palavra);
+contador(abcde);
 
 //função para retornar todas as permutações da palavra;
 const permutacoesString = (string: string): string[] => { //recebe uma string e retorna array de strings
