@@ -39,3 +39,30 @@ function renewId ():void{
 	}
 }
 renewId();
+
+//SOLUÇÃO DO PROFESSSOR
+function validateRenovation(birthDate:string,issueDate:string):boolean{
+	let dataAtual:Date = new Date();
+	let formatDateBirth = new Date(birthDate);
+	let formatIssueDate = new Date(issueDate);
+	let ano = formatDateBirth.getFullYear();
+	let anoEmissao = formatIssueDate.getFullYear();
+	let anoComparacao = dataAtual.getFullYear();
+	let idade = anoComparacao - ano;
+	let emissao = anoComparacao - anoEmissao;
+	let result:boolean = false	
+	if (idade <= 20 && emissao >= 5){ 
+		result = true;
+}
+else if (idade>= 21 && idade <=50 && emissao >= 10){
+		result = true;
+}
+else if (idade > 50 && emissao >= 15){
+		result = true;
+}
+else {
+		result = false;
+}
+}
+//formato para chamada da função: mes/dia/ano
+console.log(validateRenovation('07/24/1993','07/11/2012'));
