@@ -64,7 +64,7 @@ function factorial(word: string) {
     return result;
 
     //com laço for
-    /*for (var i = wordSize - 1; i >= 1; i--) {
+    /*for (var i = wordSize - 1; i > 1; i--) {
         wordSize *= i;
     }
     return wordSize;
