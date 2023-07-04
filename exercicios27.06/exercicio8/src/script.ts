@@ -9,6 +9,8 @@ Escreva uma função que pergunta ao usuário a data de nascimento de uma pessoa
 Dica 1: Você precisará da data atual para fazer as operações, uma opção é utilizar new Date() para obter a data atual
 Dica 2: Para fazer as operações necessárias, você pode converter as datas para timestamp usando o método getTime() na data 
 */
+//toLocaleDateString('pt-BR') <= converte para data local  
+
 function receberData(data:string):number{
 	let dataAtual: Date = new Date ();
 	let dataArray = data.split("/");
