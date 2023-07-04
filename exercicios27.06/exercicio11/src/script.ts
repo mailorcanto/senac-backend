@@ -50,8 +50,8 @@ E assim sucessivamente até chegarmos a zero
 */
 
 function retornaRomanos(num:number) {
-    var numeraisRomanos:any = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1};
-    let romanos:string = '';
+    const numeraisRomanos:any = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1};
+    let romanos:string = ''; //inicializando romanos como uma string através do ''(texto vazio);
     for (let i in numeraisRomanos ) {
       while ( num >= numeraisRomanos[i] ) { //enquanto número digitado for maior ou igual aos numeros dentro do array;
         romanos += i; //acrescentando numerais romanos à string roman;
@@ -59,29 +59,14 @@ function retornaRomanos(num:number) {
         num -= numeraisRomanos[i]; //subtraindo número digitado pelos números do array  
         console.log(num);
         console.log(numeraisRomanos[i]);
-      }
-    }
+      } }
     return romanos;
   }
 
-console.log(retornaRomanos(2023));
+console.log(retornaRomanos(57));
 
 function convertToRoman(num: number): string {
-    const roman: { [key: string]: number } = {
-      M: 1000,
-      CM: 900,
-      D: 500,
-      CD: 400,
-      C: 100,
-      XC: 90,
-      L: 50,
-      XL: 40,
-      X: 10,
-      IX: 9,
-      V: 5,
-      IV: 4,
-      I: 1,
-    };
+    const roman: { [key: string]: number } = {M: 1000, CM: 900, D: 500, CD: 400, C: 100, XC: 90, L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1};
     let str:string = '';
   
     for (let i of Object.keys(roman)) { //Object.keys busca o nome das PROPRIEDADES de um objeto e índice(1, 2 etc) de um array
