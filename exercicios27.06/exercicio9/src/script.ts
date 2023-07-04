@@ -19,15 +19,20 @@ que ela possui.
 
 PERMUTAÇÕES / PERMUTATIONS
 */
-function contador(palavra:string){
+function contador(palavra:string):number{
 	let contadorAnagramas: number = palavra.length;
 	let contador:number = 1;
-	for (let i =1; i <= contadorAnagramas;i++){
-		contador *=i;
+
+	if (contadorAnagramas === 0 || contadorAnagramas === 1) { //aplicando regra de fatorial igual a 0 ou 1 
+    return 1;
 	}
-	return console.log(contador);
+
+	for (let i = 1; i <= contadorAnagramas;i++){
+		contador *=i; // o mesmo que: contador = contador * i;
+	}
+	return contador;
 }
-contador(abcde);
+console.log(contador('abcdef'));
 
 //função para retornar todas as permutações da palavra;
 const permutacoesString = (string: string): string[] => { //recebe uma string e retorna array de strings
@@ -46,15 +51,15 @@ const permutacoesString = (string: string): string[] => { //recebe uma string e 
 function factorial(word: string) {
     let wordSize = word.length;    
 
-    if (wordSize === 0 || wordSize === 1) {
+    if (wordSize === 0 || wordSize === 1) { //aplicando regra de fatorial igual a 0 ou 1 
         return 1;
     }
 
     //com laço while
-    let result = wordSize;
-    while(wordSize > 1) {
-        wordSize--;
-        result *= wordSize;
+    let result = wordSize; //variável para receber os cálculos com a variável wordSize;
+    while(wordSize > 1) { //enquanto tamanho da palavra for maior que 1
+        wordSize--; //decrementando do tamanho da variável até chegar a igual ou menor do que 1
+        result *= wordSize; //result = result * wordSize
     }
     return result;
 
