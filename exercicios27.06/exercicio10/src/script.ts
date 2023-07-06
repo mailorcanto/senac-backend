@@ -63,10 +63,6 @@ Você deve criar uma função que receba o CPF no formato “xxx.xxx.xxx-xx” e
 retorne um True e caso seja inválido retorne False
 */
 
-let cpf: string = '01548031038'; //number não aceita 0 como primeiro valor
-let arrayCPF: string[] = cpf.split(''); //transformando string em array de strings
-var arrayConvertido = arrayCPF.map(function(str){return parseInt(str);}) //map para converter todos os valores do array para number
-
 function somaArray(array:number[]):number{ //função para somar os valores dentro de um array
     let soma:number = array.reduce(function(a, b) { return a + b; }, 0);
     let mod:number = soma % 11; //resto divisão
@@ -74,59 +70,109 @@ function somaArray(array:number[]):number{ //função para somar os valores dent
     return mod;
 }
 
-function validarCpf (array:number[]):void{
+function validarCpf (cpf:string):void{
+    console.log(cpf);
+    cpf = cpf.replace(/[\s.-]*/igm, ''); //removendo '.' e '-' da string com o construtor RegExp. \s: Corresponde um único caractere de espaço em 
+    //branco, incluindo espaço, tabulação (tab), quebra de página, nova linha (LF) e outros espaços Unicode. 
+    //i: ignorar maiúsc./minúsc. 
+    //g: corresponder globalmente, acha todas as correspondências em vez de parar após achar a primeira.
+    //m: multilinha; trata caracteres de início e fim (^ e $) ao operar sobre múltiplas linhas (ou seja, corresponder o início ou fim de cada 
+    //linha (delimitado por \n ou \r), e não apenas o começo ou fim de toda a string de entrada).
+    //https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+
+    console.log(cpf);
+    let arrayCPF: string[] = cpf.split(''); //transformando string em array de strings
+    let arrayConvertido = arrayCPF.map(function(str){return parseInt(str);}) //map para converter todos os valores do array para number
     let teste1:number[]=[10,9,8,7,6,5,4,3,2]; //array para primeira validacao;
     let teste2:number[]=[11,10,9,8,7,6,5,4,3,2]; //array para segunda validacao;
     let arrayValidacao1:number[]=[]; //inicializando array vazio para onde serão enviados os resultados das multiplicações do primeiro for
     let arrayValidacao2:number[]=[]; //inicializando array vazio para onde serão enviados os resultados das multiplicações do segundo for
-    for (let i=0; i<teste1.length; i++){
-        let calculo1:number = array[i]*teste1[i]; //fazendo a multiplicação do array na posição i pelo teste na posição i e salvando em um array;
-        arrayValidacao1.push(calculo1);  //enviando resultados das multiplicações do array anterior para o arrayValidacao1;
-    }
-    
-    if (somaArray(arrayValidacao1) == array[9] || somaArray(arrayValidacao1) >=10 && array[9] == 0){ //fazendo testes para ir para o próximo array ou retornar false
-        for (let i=0; i<teste2.length; i++){
-            let calculo2:number = array[i]*teste2[i];
-            arrayValidacao2.push(calculo2);
-        }
-        if (somaArray(arrayValidacao2) == array[10] || somaArray(arrayValidacao2) >=10 && array[10] == 0){
-            console.log('CPF válido?',true);
-        }
-        else {
-            console.log('CPF válido?',false);
-        }
-    }
-    else {
+    let arrayInvertido = arrayConvertido.slice(0).reverse(); //para usar o comando reverse é necessário fazer uma CÓPIA do array original, 
+    //por isso o slice(0), que é uma 'fatia' do array, porém igual ao original (o valor 0 não corta o array)
+    if (arrayConvertido === arrayInvertido){
         console.log('CPF válido?',false);
     }
-}
-validarCpf(arrayConvertido);
-
-//solução do professor
-function convertToRoman(year: number):string{
-  const values= [{symbol: 'M', value: 1000},
-                {symbol: 'CM', value: 900},
-                {symbol: 'D', value: 500},
-                {symbol: 'CD', value: 400},
-                {symbol: 'C', value: 100},
-                {symbol: 'XC', value: 90},
-                {symbol: 'L', value: 50},
-                {symbol: 'XL', value: 40},
-                {symbol: 'X', value: 10},
-                {symbol: 'IX', value: 9},
-                {symbol: 'V', value: 5},
-                {symbol: 'IV', value: 4},
-                {symbol: 'I', value: 1}]
-
-  let result:string = '';
-  for (const {symbol, value} of values){
-    while (year >= value){ 
-      result += symbol; //acrescentando símbolo correspondente à string result;
-      year -= value; //diminuindo valores do ano conforme array;
+   
+    else{
+        for (let i=0; i<teste1.length; i++){
+            let calculo1:number = arrayConvertido[i]*teste1[i]; //fazendo a multiplicação do array na posição i pelo teste na posição i e salvando em uma variável;
+            arrayValidacao1.push(calculo1);  //enviando resultados das multiplicações do array anterior para o arrayValidacao1;
+        }
+        if (somaArray(arrayValidacao1) == arrayConvertido[9] || somaArray(arrayValidacao1) >=10 && arrayConvertido[9] == 0){ //fazendo testes para ir para o próximo array ou retornar false
+            for (let i=0; i<teste2.length; i++){
+                let calculo2:number = arrayConvertido[i]*teste2[i];
+                arrayValidacao2.push(calculo2);
+            }
+            if (somaArray(arrayValidacao2) == arrayConvertido[10] || somaArray(arrayValidacao2) >=10 && arrayConvertido[10] == 0){
+                console.log('CPF válido?',true);
+            }
+            else {
+                console.log('CPF válido?',false);
+            }
+        }
     }
+}    
+validarCpf('015.480.310-38');
+
+
+//SOLUÇÃO DO PROFESSOR
+function validateCpf(cpf: string): boolean {
+    if (typeof cpf !== "string") {
+      return false
+    }
+  
+    cpf = cpf.replace(/[\s.-]*/igm, '')
+  
+    if (
+        !cpf ||
+        cpf.length != 11 ||
+        cpf == "00000000000" ||
+        cpf == "11111111111" ||
+        cpf == "22222222222" ||
+        cpf == "33333333333" ||
+        cpf == "44444444444" ||
+        cpf == "55555555555" ||
+        cpf == "66666666666" ||
+        cpf == "77777777777" ||
+        cpf == "88888888888" ||
+        cpf == "99999999999"
+    ) {
+      return false
+    }
+  
+    let soma = 0;
+    let resto;
+  
+    for (var i = 1; i <= 9; i++) {
+        soma = soma + parseInt(cpf.substring(i-1, i)) * (11 - i)
+    }
+  
+    resto = (soma * 10) % 11
+    
+    if ((resto == 10) || (resto == 11)) {
+      resto = 0
+    }
+  
+    if (resto != parseInt(cpf.substring(9, 10)) ) {
+      return false
+    }
+  
+    soma = 0;
+    
+    for (var i = 1; i <= 10; i++) {
+      soma = soma + parseInt(cpf.substring(i-1, i)) * (12 - i)
+      resto = (soma * 10) % 11
+    }
+    
+    if ((resto == 10) || (resto == 11)) {
+      resto = 0
+    }
+    
+    if (resto != parseInt(cpf.substring(10, 11) ) ) {
+      return false
+    }
+  
+    return true
   }
-
-  return result
-}
-
-console.log(convertToRoman(1990));
+  
+  console.log(validateCpf('015.480.310-38'));
